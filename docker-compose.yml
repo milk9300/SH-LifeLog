@@ -1,0 +1,27 @@
+services:
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    ports:
+      - "8091:8000"
+    environment:
+      - DB_TYPE=sqlite
+      - SQLITE_DB_PATH=/app/data/lifelog.db
+      - TZ=Asia/Shanghai
+    volumes:
+      - lifelog-data:/app/data
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+      - "8090:80"
+    environment:
+      - TZ=Asia/Shanghai
+    depends_on:
+      - backend
+
+volumes:
+  lifelog-data:
