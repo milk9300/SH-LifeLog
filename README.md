@@ -86,6 +86,21 @@ npm install
 npm run dev
 ```
 
+### 🐳 4. Docker 部署 (推荐)
+如果您希望使用容器化方案快速启动，本项目已完整适配 Docker：
+
+```bash
+# 1. 配置环境变量 (AI Key)
+cp backend/.env.example backend/.env
+
+# 2. 一键启动 (包含前端、后端与数据库卷)
+docker-compose up -d --build
+```
+
+- **前端地址**: `http://localhost:8090`
+- **后端 API**: `http://localhost:8091`
+- **数据持久化**: 数据库文件将挂载在 Docker Volume `lifelog-data` 中，确保容器重启数据不丢失。
+
 ---
 
 ## 📂 项目结构
